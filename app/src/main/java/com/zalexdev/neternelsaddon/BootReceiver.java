@@ -28,7 +28,7 @@ public class BootReceiver extends BroadcastReceiver {
             if (prefs.getBoolean("boot")) {
                 int loaded = 0;
                 for (String module : prefs.getModules()) {
-                    customCommand("insmod /system/lib/modules/"+module);
+                    customCommand("insmod /vendor/lib/modules/"+module);
                     ArrayList<String> driverList = customCommand("ls /sys/bus/usb/drivers");
                     if (contains(driverList, module.replace(".ko", ""))){
                         loaded++;

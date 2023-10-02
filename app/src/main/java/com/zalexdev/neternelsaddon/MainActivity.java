@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         });
         new Thread(() -> {
             ArrayList<String> pathList = customCommand("ls /sys/bus/usb/drivers");
-            ArrayList<String> driverList = customCommand("ls /system/lib/modules/");
+            ArrayList<String> driverList = customCommand("ls /vendor/lib/modules/");
             ModulesAdapter adapter = new ModulesAdapter(MainActivity.this,MainActivity.this,driverList,pathList);
             runOnUiThread(() -> {
                 recyclerView.setAdapter(adapter);

@@ -57,7 +57,7 @@ public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ViewHold
             adapter.switchMaterial.setEnabled(false);
             if (checked){
             new Thread(() -> {
-                customCommand("insmod /system/lib/modules/"+pathList.get(position));
+                customCommand("insmod /vendor/lib/modules/"+pathList.get(position));
                 ArrayList<String> driverList = customCommand("ls /sys/bus/usb/drivers");
                 if (contains(driverList, pathList.get(position).replace(".ko", ""))){
                     toaster("Module loaded successfully");
@@ -78,7 +78,7 @@ public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ViewHold
             }).start();
             }else{
                 new Thread(() -> {
-                customCommand("rmmod /system/lib/modules/"+pathList.get(position));
+                customCommand("rmmod /vendor/lib/modules/"+pathList.get(position));
                 ArrayList<String> driverList = customCommand("ls /sys/bus/usb/drivers");
                 if (!contains(driverList, pathList.get(position).replace(".ko", ""))){
                     toaster("Module unloaded successfully");
